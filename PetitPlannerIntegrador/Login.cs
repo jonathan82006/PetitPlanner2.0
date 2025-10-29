@@ -1,90 +1,126 @@
 ﻿using MySqlConnector;
 using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace PetitPlannerIntegrador
 {
     public partial class LoginControl : UserControl
     {
-        // Eventos para comunicación con MainForm
         public event EventHandler LoginExitoso;
         public event EventHandler<string> LoginFallido;
 
         public LoginControl()
         {
             InitializeComponent();
+            this.Resize += LoginControl_Resize;
+            this.Load += LoginControl_Load;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Redondear(Control c, int radio)
+        {
+            if (c.Width <= 0 || c.Height <= 0) return;
+            GraphicsPath path = new GraphicsPath();
+            path.AddArc(0, 0, radio, radio, 180, 90);
+            path.AddArc(c.Width - radio, 0, radio, radio, 270, 90);
+            path.AddArc(c.Width - radio, c.Height - radio, radio, radio, 0, 90);
+            path.AddArc(0, c.Height - radio, radio, radio, 90, 90);
+            path.CloseFigure();
+            c.Region = new Region(path);
+        }
+
+        private void LoginControl_Load(object sender, EventArgs e)
+        {
+            this.BackColor = Color.FromArgb(220, 220, 230); // Fondo gris claro
+            panelLogin.BackColor = Color.FromArgb(30, 27, 84); // Azul oscuro
+            panelUser.BackColor = Color.FromArgb(65, 60, 140); // Azul medio
+            panelPass.BackColor = Color.FromArgb(65, 60, 140);
+
+            labelTitulo.ForeColor = Color.White;
+            labelUser.ForeColor = Color.FromArgb(180, 180, 200);
+            labelPass.ForeColor = Color.FromArgb(180, 180, 200);
+
+            buttonLogin.BackColor = Color.White;
+            buttonLogin.ForeColor = Color.FromArgb(30, 27, 84);
+            buttonLogin.FlatStyle = FlatStyle.Flat;
+            buttonLogin.FlatAppearance.BorderSize = 0;
+            buttonLogin.Cursor = Cursors.Hand;
+
+            // Bordes redondeados
+            Redondear(panelLogin, 30);
+            Redondear(panelUser, 10);
+            Redondear(panelPass, 10);
+            Redondear(buttonLogin, 10);
+
+            CentrarPanel();
+        }
+
+        private void LoginControl_Resize(object sender, EventArgs e)
+        {
+            CentrarPanel();
+        }
+
+        private void CentrarPanel()
+        {
+            if (panelLogin == null) return;
+            panelLogin.Left = (this.ClientSize.Width - panelLogin.Width) / 2;
+            panelLogin.Top = (this.ClientSize.Height - panelLogin.Height) / 2;
+        }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
         {
             string usuario = textBoxUsuario.Text;
             string password = textBoxPassword.Text;
 
-            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Por favor, complete todos los campos.");
+                MessageBox.Show("Por favor, complete todos los campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Usar la práctica de usar 'using' en el ConnectionString
             string connectionString = "Server=localhost;Database=petitplanner;Uid=root;Pwd=root;";
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (var connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-
-                    // Consulta OPTIMIZADA: Verifica las credenciales Y devuelve el ID en un solo paso.
                     string query = "SELECT id_user FROM usuarios WHERE user = @usuario AND password = @password";
 
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    using (var command = new MySqlCommand(query, connection))
                     {
-                        // Asignar los parámetros solo una vez.
                         command.Parameters.AddWithValue("@usuario", usuario);
                         command.Parameters.AddWithValue("@password", password);
 
-                        // ExecuteScalar() devolverá el id_user si se encuentra un match, o null si no hay match.
-                        object idResult = command.ExecuteScalar();
+                        var result = command.ExecuteScalar();
 
-                        string userId = null;
-
-                        if (idResult != null && idResult != DBNull.Value)
+                        if (result != null)
                         {
-                            userId = idResult.ToString();
-                        }
-
-                        if (!string.IsNullOrEmpty(userId))
-                        {
-                            // Mandamos el UserId a Clase de SessionManager para hacer la variable userId global
+                            string userId = result.ToString();
                             SessionManager.StartSession(userId);
-
-
-                            // En lugar de abrir nuevo form, disparamos evento
                             LoginExitoso?.Invoke(this, EventArgs.Empty);
                         }
                         else
                         {
-                            // Si idResult es null, significa que no se encontró el usuario/contraseña
                             LoginFallido?.Invoke(this, "Credenciales incorrectas");
+                            MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error de conexión o de base de datos: {ex.Message}");
+                MessageBox.Show($"Error de conexión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LoginFallido?.Invoke(this, ex.Message);
             }
         }
 
-        // Método para limpiar campos
         public void LimpiarCampos()
         {
             textBoxUsuario.Text = "";
             textBoxPassword.Text = "";
         }
-
-        
     }
 }
+

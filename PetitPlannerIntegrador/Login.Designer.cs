@@ -3,87 +3,160 @@
     partial class LoginControl
     {
         private System.ComponentModel.IContainer components = null;
+        private Panel panelLogin;
+        private Label labelTitulo;
+        private Label labelUser;
+        private Label labelPass;
+        private Panel panelUser;
+        private Panel panelPass;
         private TextBox textBoxUsuario;
         private TextBox textBoxPassword;
-        private Button button1;
-        private Label label1;
-        private Label label2;
+        private Button buttonLogin;
 
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
-            this.textBoxUsuario = new TextBox();
-            this.textBoxPassword = new TextBox();
-            this.button1 = new Button();
-            this.label1 = new Label();
-            this.label2 = new Label();
-            this.SuspendLayout();
-
+            panelLogin = new Panel();
+            labelTitulo = new Label();
+            labelUser = new Label();
+            labelPass = new Label();
+            panelUser = new Panel();
+            textBoxUsuario = new TextBox();
+            panelPass = new Panel();
+            textBoxPassword = new TextBox();
+            buttonLogin = new Button();
+            panelLogin.SuspendLayout();
+            panelUser.SuspendLayout();
+            panelPass.SuspendLayout();
+            SuspendLayout();
             // 
-            // textBoxUsuario
+            // panelLogin
             // 
-            this.textBoxUsuario.Location = new Point(100, 50);
-            this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.Size = new Size(200, 23);
-            this.textBoxUsuario.TabIndex = 0;
+            panelLogin.Controls.Add(labelTitulo);
+            panelLogin.Controls.Add(labelUser);
+            panelLogin.Controls.Add(labelPass);
+            panelLogin.Controls.Add(panelUser);
+            panelLogin.Controls.Add(panelPass);
+            panelLogin.Controls.Add(buttonLogin);
+            panelLogin.Location = new Point(0, 0);
+            panelLogin.Name = "panelLogin";
+            panelLogin.Size = new Size(400, 380);
+            panelLogin.TabIndex = 0;
+            // 
+            // labelTitulo
+            // 
+            labelTitulo.Dock = DockStyle.Top;
+            labelTitulo.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
+            labelTitulo.ForeColor = Color.White;
+            labelTitulo.Location = new Point(0, 0);
+            labelTitulo.Name = "labelTitulo";
+            labelTitulo.Size = new Size(400, 70);
+            labelTitulo.TabIndex = 0;
+            labelTitulo.Text = "Inicia Sesión";
+            labelTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelUser
+            // 
+            labelUser.AutoSize = true;
+            labelUser.ForeColor = Color.FromArgb(180, 180, 200);
+            labelUser.Location = new Point(60, 90);
+            labelUser.Name = "labelUser";
+            labelUser.Size = new Size(41, 20);
+            labelUser.TabIndex = 1;
+            labelUser.Text = "User:";
+            // 
+            // labelPass
+            // 
+            labelPass.AutoSize = true;
+            labelPass.ForeColor = Color.FromArgb(180, 180, 200);
+            labelPass.Location = new Point(60, 170);
+            labelPass.Name = "labelPass";
+            labelPass.Size = new Size(73, 20);
+            labelPass.TabIndex = 2;
+            labelPass.Text = "Password:";
+            // 
+            // panelUser
+            // 
+            panelUser.BackColor = Color.FromArgb(65, 60, 140);
+            panelUser.Controls.Add(textBoxUsuario);
+            panelUser.Location = new Point(60, 110);
+            panelUser.Name = "panelUser";
+            panelUser.Size = new Size(280, 40);
+            panelUser.TabIndex = 3;
+            //
+            //textBoxUsuario
+            //
+            textBoxUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxUsuario.BackColor = Color.FromArgb(65, 60, 140);
+            textBoxUsuario.BorderStyle = BorderStyle.None;
+            textBoxUsuario.Font = new Font("Segoe UI", 10F);
+            textBoxUsuario.ForeColor = Color.White;
+            textBoxUsuario.Location = new Point(8, 8);       // 🔹 adds padding
+            textBoxUsuario.Width = 264;                      // 🔹 smaller width so text stays inside panel
+            textBoxUsuario.Name = "textBoxUsuario";
+            textBoxUsuario.PlaceholderText = "Ingresa tu usuario";
+            textBoxUsuario.Size = new Size(264, 23);
+            textBoxUsuario.TabIndex = 0;
+            // 
+            // panelPass
+            // 
+            panelPass.BackColor = Color.FromArgb(65, 60, 140);
+            panelPass.Controls.Add(textBoxPassword);
+            panelPass.Location = new Point(60, 190);
+            panelPass.Name = "panelPass";
+            panelPass.Size = new Size(280, 40);
+            panelPass.TabIndex = 4;
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new Point(100, 100);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new Size(200, 23);
-            this.textBoxPassword.TabIndex = 1;
+            textBoxPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxPassword.BackColor = Color.FromArgb(65, 60, 140);
+            textBoxPassword.BorderStyle = BorderStyle.None;
+            textBoxPassword.Font = new Font("Segoe UI", 10F);
+            textBoxPassword.ForeColor = Color.White;
+            textBoxPassword.Location = new Point(8, 8);       // 🔹 adds padding
+            textBoxPassword.Width = 264;
+            textBoxPassword.Name = "textBoxPassword";
+            textBoxPassword.PlaceholderText = "Ingresa tu contraseña";
+            textBoxPassword.Size = new Size(264, 23);
+            textBoxPassword.TabIndex = 0;
+            textBoxPassword.UseSystemPasswordChar = true;
             // 
-            // button1
+            // buttonLogin
             // 
-            this.button1.Location = new Point(150, 150);
-            this.button1.Name = "button1";
-            this.button1.Size = new Size(100, 30);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new Point(100, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(47, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Usuario";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new Point(100, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new Size(67, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Contraseña";
+            buttonLogin.BackColor = Color.White;
+            buttonLogin.Cursor = Cursors.Hand;
+            buttonLogin.FlatAppearance.BorderSize = 0;
+            buttonLogin.FlatStyle = FlatStyle.Flat;
+            buttonLogin.Font = new Font("Segoe UI", 11F);
+            buttonLogin.ForeColor = Color.FromArgb(30, 27, 84);
+            buttonLogin.Location = new Point(125, 270);
+            buttonLogin.Name = "buttonLogin";
+            buttonLogin.Size = new Size(150, 40);
+            buttonLogin.TabIndex = 5;
+            buttonLogin.Text = "Login";
+            buttonLogin.UseVisualStyleBackColor = false;
+            buttonLogin.Click += buttonLogin_Click;
             // 
             // LoginControl
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBoxPassword);
-            this.Controls.Add(this.textBoxUsuario);
-            this.Name = "LoginControl";
-            this.Size = new Size(400, 250);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            Controls.Add(panelLogin);
+            Name = "LoginControl";
+            Size = new Size(800, 600);
+            panelLogin.ResumeLayout(false);
+            panelLogin.PerformLayout();
+            panelUser.ResumeLayout(false);
+            panelUser.PerformLayout();
+            panelPass.ResumeLayout(false);
+            panelPass.PerformLayout();
+            ResumeLayout(false);
         }
     }
 }
+

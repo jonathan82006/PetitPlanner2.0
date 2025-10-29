@@ -42,17 +42,19 @@
             // inventoryId
             // 
             inventoryId.AutoSize = true;
-            inventoryId.Location = new Point(824, 29);
+            inventoryId.Location = new Point(659, 23);
+            inventoryId.Margin = new Padding(2, 0, 2, 0);
             inventoryId.Name = "inventoryId";
-            inventoryId.Size = new Size(59, 25);
+            inventoryId.Size = new Size(50, 20);
             inventoryId.TabIndex = 6;
             inventoryId.Text = "label4";
             // 
             // botonAtras
             // 
-            botonAtras.Location = new Point(612, 12);
+            botonAtras.Location = new Point(490, 10);
+            botonAtras.Margin = new Padding(2, 2, 2, 2);
             botonAtras.Name = "botonAtras";
-            botonAtras.Size = new Size(196, 58);
+            botonAtras.Size = new Size(157, 46);
             botonAtras.TabIndex = 7;
             botonAtras.Text = "Atras";
             botonAtras.UseVisualStyleBackColor = true;
@@ -60,9 +62,10 @@
             // 
             // añadirArticulo
             // 
-            añadirArticulo.Location = new Point(1502, 29);
+            añadirArticulo.Location = new Point(1269, 23);
+            añadirArticulo.Margin = new Padding(2, 2, 2, 2);
             añadirArticulo.Name = "añadirArticulo";
-            añadirArticulo.Size = new Size(196, 58);
+            añadirArticulo.Size = new Size(157, 46);
             añadirArticulo.TabIndex = 8;
             añadirArticulo.Text = "Añadir Articulo";
             añadirArticulo.UseVisualStyleBackColor = true;
@@ -76,18 +79,20 @@
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.GridColor = SystemColors.Window;
-            dataGridView1.Location = new Point(612, 136);
+            dataGridView1.Location = new Point(490, 109);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1086, 759);
+            dataGridView1.Size = new Size(869, 607);
             dataGridView1.TabIndex = 9;
             // 
             // homePage
             // 
-            homePage.Location = new Point(12, 136);
+            homePage.Location = new Point(10, 109);
+            homePage.Margin = new Padding(2, 2, 2, 2);
             homePage.Name = "homePage";
-            homePage.Size = new Size(210, 57);
+            homePage.Size = new Size(168, 46);
             homePage.TabIndex = 10;
             homePage.Text = "Home Page";
             homePage.UseVisualStyleBackColor = true;
@@ -95,18 +100,20 @@
             // 
             // inventary
             // 
-            inventary.Location = new Point(12, 222);
+            inventary.Location = new Point(10, 178);
+            inventary.Margin = new Padding(2, 2, 2, 2);
             inventary.Name = "inventary";
-            inventary.Size = new Size(210, 61);
+            inventary.Size = new Size(168, 49);
             inventary.TabIndex = 11;
             inventary.Text = "Inventario";
             inventary.UseVisualStyleBackColor = true;
             // 
             // calendario
             // 
-            calendario.Location = new Point(12, 310);
+            calendario.Location = new Point(10, 248);
+            calendario.Margin = new Padding(2, 2, 2, 2);
             calendario.Name = "calendario";
-            calendario.Size = new Size(210, 72);
+            calendario.Size = new Size(168, 58);
             calendario.TabIndex = 12;
             calendario.Text = "Calendario";
             calendario.UseVisualStyleBackColor = true;
@@ -114,9 +121,10 @@
             // 
             // agendar
             // 
-            agendar.Location = new Point(12, 426);
+            agendar.Location = new Point(10, 341);
+            agendar.Margin = new Padding(2, 2, 2, 2);
             agendar.Name = "agendar";
-            agendar.Size = new Size(210, 72);
+            agendar.Size = new Size(168, 58);
             agendar.TabIndex = 13;
             agendar.Text = "Agendar";
             agendar.UseVisualStyleBackColor = true;
@@ -124,7 +132,7 @@
             // 
             // inventory
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(agendar);
             Controls.Add(calendario);
@@ -134,8 +142,9 @@
             Controls.Add(añadirArticulo);
             Controls.Add(botonAtras);
             Controls.Add(inventoryId);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "inventory";
-            Size = new Size(1898, 1024);
+            Size = new Size(1518, 819);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
